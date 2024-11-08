@@ -1,0 +1,25 @@
+﻿:root {
+    --background-color: #10100E;
+    --main-color: #8597A1;
+    --main-color-darker: #6a7880;
+
+    --main-font: 'GeneralSans-Semibold';
+    --main-font-medium: 'GeneralSans-Medium';
+    --secondary-font: 'Gambetta-Medium';
+}
+
+/* General Animations */
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Header Animations */
+@keyframes headerSlideIn {
+    to {
+        transform: translateX(calc(var(--direction) * 590px)); /* Move to final position */
+        opacity: 1;
+    }
+}
+
