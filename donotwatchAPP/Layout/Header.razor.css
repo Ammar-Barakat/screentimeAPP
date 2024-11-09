@@ -1,15 +1,41 @@
 ﻿
 .header {
-    margin-top: 1em;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--header-background);
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+}
+
+.header h1 {
+    margin-top: 0.5em;
+    color: white;
+    font-family: var(--main-font);
+    font-size: 3rem;
+}
+
+.header p {
+    font-family: var(--secondary-font);
+    font-size: 1.25rem;
+    color: white;
+}
+
+.main-header {
+    padding-top: 1em;
     display: flex;
     justify-content: space-between;
 }
 
-.header .links {
+.main-header .links {
     width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-between;
+    font-family: var(--main-font-medium);
+    font-size: 1.2rem;
+    color: white;
+}
+
+.main-header .links p {
     font-family: var(--main-font-medium);
     font-size: 1.2rem;
 }

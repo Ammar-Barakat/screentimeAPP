@@ -1,4 +1,12 @@
 ﻿
+.cover {
+    position: absolute;
+}
+
+.cover img {
+    width: 100%;
+}
+
 .trending .trending-shows .poster {
     position: relative;
 }

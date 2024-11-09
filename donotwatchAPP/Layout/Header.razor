@@ -1,78 +1,83 @@
-﻿
-<div class="header">
-    <div class="logo">
-        <img class="logo-a" src="imgs/header/logo.png" alt="logo a">
-    </div>
-    <div class="links">
-        <div class="dropdown">
-            <a class="pic dropdown-nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <img class="rounded-circle" src="imgs/header/profile-pic.png" alt="profile picture" />
-                <p class="mb-0 mx-2 me-1">User</p>
-            </a>
-            <ul class="dropdown-menu">
-                <li>
-                    <NavLink class="nav-link" href="profile">
-                        Profile
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="watchlist">
-                        Watchlist
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="reviews">
-                        Reviews
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="diary">
-                        Diary
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="lists">
-                        Lists
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="recommended">
-                        Recommended
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="settings">
-                        Settings
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink class="nav-link" href="logout">
-                        Logout
-                    </NavLink>
-                </li>
-            </ul>
+﻿@inject HttpClient _client;
+
+<div class="header" style="--header-background: url(@poster_path)">
+    <div class="container">
+        <div class="main-header">
+            <div class="logo">
+                <img class="logo-a" src="imgs/header/logo.png" alt="logo a">
+            </div>
+            <div class="links">
+                <div class="dropdown">
+                    <a class="pic dropdown-nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img class="rounded-circle" src="imgs/header/profile-pic.png" alt="profile picture" />
+                        <p class="mb-0 mx-2 me-1">User</p>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <NavLink class="nav-link" href="profile">
+                                Profile
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="watchlist">
+                                Watchlist
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="reviews">
+                                Reviews
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="diary">
+                                Diary
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="lists">
+                                Lists
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="recommended">
+                                Recommended
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="settings">
+                                Settings
+                            </NavLink>
+                        </li>
+                        <li>
+                            <NavLink class="nav-link" href="logout">
+                                Logout
+                            </NavLink>
+                        </li>
+                    </ul>
+                </div>
+                <NavLink class="nav-link dicover-link" href="discover">
+                    <span>Shows</span>
+                </NavLink>
+                <NavLink class="nav-link dicover-link" href="discover">
+                    <span>Lists</span>
+                </NavLink>
+                <form method="get">
+                    <input class="form-control" type="text" placeholder="Search" aria-label="default input example">
+                </form>
+            </div>
         </div>
-        <NavLink class="nav-link dicover-link" href="discover">
-            <span>Shows</span>
-        </NavLink>
-        <NavLink class="nav-link dicover-link" href="discover">
-            <span>Lists</span>
-        </NavLink>
-        <form method="get">
-            <input class="form-control" type="text" placeholder="Search" aria-label="default input example">
-        </form>
+        <h1>Welcome, User.</h1>
+        <p>Here’s what we’ve been watching…</p>
     </div>
 </div>
 
 @code {
+    string poster_path;
 
+    protected override async Task OnInitializedAsync()
+    {
+        poster_path = await _client.GetStringAsync("general-info/cover");
+    }
 }
 
 
-@* <div class="dropdown">
-            <a class="pic dropdown-nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa-solid fa-bell fa-lg"></i>
-            </a>
-            <ul class="dropdown-menu">
-            </ul>
-</div> *@

@@ -1,32 +1,36 @@
 ﻿@page "/"
-
-
 @inject HttpClient _client;
 
 <PageTitle>Home</PageTitle>
 
-<div class="trending mt-5">
-    <h4>Trending TV Shows</h4>
-    @if (result != null)
-    {
-        <div class="trending-shows d-flex justify-content-between">
-            @foreach (var show in result.results.Take(6))
-            {
-                <a href="">
-                    <div class="poster">
-                        <div class="overlay">
-                            @show.original_name
+@* <div class="cover">
+    <img src="@result.results.FirstOrDefault().poster_path" />
+</div> *@
+
+<div class="container">
+    <div class="trending mt-3">
+        <h4>Trending TV Shows</h4>
+        @if (result != null)
+        {
+            <div class="trending-shows d-flex justify-content-between">
+                @foreach (var show in result.results.Take(6))
+                {
+                    <NavLink href="@($"show/details/{show.id}-{show.original_name.ToLower().Replace(" ", "-")}")">
+                        <div class="poster">
+                            <div class="overlay">
+                                @show.original_name
+                            </div>
+                            <img src="@show.poster_path" width="200px" />
                         </div>
-                        <img src="@show.poster_path" width="200px" />
-                    </div>
-                </a>
-            }
-        </div>
-    }
-    else
-    {
-        <h6>@errorString</h6>
-    }
+                    </NavLink>
+                }
+            </div>
+        }
+        else
+        {
+            <h6>@errorString</h6>
+        }
+    </div>
 </div>
 
 @code {
