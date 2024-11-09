@@ -1,0 +1,29 @@
+﻿
+.trending .trending-shows .poster {
+    position: relative;
+}
+
+.trending .trending-shows .poster img {
+    border-radius: 15px;
+}
+
+.trending .trending-shows .poster .overlay {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    background-color: transparent;
+    color: #8597a1;
+    display: none;
+    font-family: var(--main-font);
+    font-size: 1.2rem;
+    transition: 0.2s;
+}
+
+.trending .trending-shows .poster:hover .overlay {
+    background-color: #000000c7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

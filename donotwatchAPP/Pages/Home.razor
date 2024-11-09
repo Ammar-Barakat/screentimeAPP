@@ -1,7 +1,49 @@
 ﻿@page "/"
 
+
+@inject HttpClient _client;
+
 <PageTitle>Home</PageTitle>
 
-@* <h1>Hello, world!</h1>
+<div class="trending mt-5">
+    <h4>Trending TV Shows</h4>
+    @if (result != null)
+    {
+        <div class="trending-shows d-flex justify-content-between">
+            @foreach (var show in result.results.Take(6))
+            {
+                <a href="">
+                    <div class="poster">
+                        <div class="overlay">
+                            @show.original_name
+                        </div>
+                        <img src="@show.poster_path" width="200px" />
+                    </div>
+                </a>
+            }
+        </div>
+    }
+    else
+    {
+        <h6>@errorString</h6>
+    }
+</div>
 
-Welcome to your new app. *@
+@code {
+    TrendingShowsResult result;
+    string errorString;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            result = await _client.GetFromJsonAsync<TrendingShowsResult>("shows/trending?time_window=day&page=1");
+            errorString = null;
+        }
+        catch (Exception ex)
+        {
+            errorString = ex.Message;
+        }
+    }
+}
+
