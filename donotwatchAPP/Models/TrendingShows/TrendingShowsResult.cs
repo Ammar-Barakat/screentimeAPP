@@ -1,4 +1,4 @@
-﻿namespace donotwatchAPP.Models
+﻿namespace donotwatchAPP.Models.TrendingShows
 {
     public class TrendingShowsResult
     {

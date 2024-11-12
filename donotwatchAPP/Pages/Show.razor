@@ -1,6 +1,49 @@
 ﻿@page "/show/details/{id:int}-{originalName}"
+@inject HttpClient _client;
 
 <Header isHome="@false"/>
+
+@if (result != null)
+{
+    <div class="cover" style="--cover-background: url(@result.backdrop_path.Replace("w1280", "original"))">
+        <div class="cover-content">
+            <div class="poster" style="--poster-background: url(@result.poster_path)"></div>
+            <div class="info">
+                <div class="header-info">
+                    <h1>@result.original_name</h1>
+                    <p>
+                        @($"{result.first_air_date.Substring(0, 4)} • {result.number_of_seasons} seasons")
+                    </p>
+                    <h6>@result.tagline</h6>
+                    <p class="overview">@result.overview</p>
+                </div>
+                <div class="sub-info">
+                    <div class="numbers">
+                        <p>@($"{result.number_of_seasons} seasons")</p>
+                        <p>@($"{result.number_of_episodes} episodes")</p>
+                    </div>
+                    <div class="premiere">
+                        <p>Premiere:</p>
+                        <p>@result.first_air_date</p>
+                    </div>
+                    <div class="last-aired">
+                        <p>Last aired:</p>
+                        <p>@result.last_air_date</p>
+                    </div>
+                    <div class="status">
+                        <p>Status:</p>
+                        <p>@result.status</p>
+                    </div>
+                    <div class="genres">
+                        <p>Genres:</p>
+                        <p class="genre">@result.genres[0].name</p>
+                        <p class="genre">@result.genres[1].name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <h3>@Id</h3>
 
@@ -9,5 +52,20 @@
     public int Id { get; set; }
 
     [Parameter]
-    public string originalName { get; set; }
+    public string originalName { get; set; } = string.Empty;
+
+    Details result = new Details();
+    string errorString = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            result = await _client.GetFromJsonAsync<Details>($"show/details/{Id}");
+        }
+        catch (Exception ex)
+        {
+            errorString = ex.Message;
+        }
+    }
 }
