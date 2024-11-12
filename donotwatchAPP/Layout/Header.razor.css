@@ -1,47 +1,36 @@
 ﻿
-.header {
+.cover {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--header-background);
-    background-size: cover;
+    background-size: 80%;
     background-position: center;
-    height: 250px;
-}
-
-.header h1 {
-    margin-top: 0.5em;
-    color: white;
-    font-family: var(--main-font);
-    font-size: 3rem;
-}
-
-.header p {
-    font-family: var(--secondary-font);
-    font-size: 1.25rem;
-    color: white;
+    height: 300px;
 }
 
 .main-header {
-    padding-top: 1em;
+    padding: 0.5em;
     display: flex;
     justify-content: space-between;
+    background-color: var(--home-color);
 }
 
 .main-header .links {
     width: 40%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     font-family: var(--main-font-medium);
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: white;
 }
 
 .main-header .links p {
     font-family: var(--main-font-medium);
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .logo img {
-    width: 200px;
+    width: 150px;
+    margin-left: 0.5em;
 }
 
 .dropdown a {

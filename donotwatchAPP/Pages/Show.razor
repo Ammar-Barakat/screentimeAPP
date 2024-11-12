@@ -1,8 +1,13 @@
-﻿@page "/show/details/{id:int}"
+﻿@page "/show/details/{id:int}-{originalName}"
+
+<Header isHome="@false"/>
 
 <h3>@Id</h3>
 
 @code {
     [Parameter]
     public int Id { get; set; }
+
+    [Parameter]
+    public string originalName { get; set; }
 }
