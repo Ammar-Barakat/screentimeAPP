@@ -218,3 +218,75 @@
     color: var(--main-color-hover);
 }*/
 
+/* ---Info--- */
+
+/*.info .latest-episode .episode .episode-cover {
+    width: 225px;
+    height: 125px;
+    background-color: red;
+}*/
+
+.info .tabs {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.info .tabs .tablink {
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    color: white;
+    transition: 0.2s;
+}
+
+.info .tabs .tablink:hover {
+    color: var(--main-color);
+}
+
+.info .tabs .active {
+    color: var(--main-color);
+}
+
+.info .cast,
+.info .crew {
+    display: none;
+}
+
+.info .seasons .season {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1em;
+}
+
+.info .seasons .season img {
+    width: 75px;
+    border-radius: 10px;
+    margin-right: 2em;
+}
+
+.info .seasons .season .title h4,
+.info .seasons .season .title p {
+    color: white;
+    transition: 0.2s;
+}
+
+.info .seasons .season .title h4:hover {
+    color: var(--main-color);
+}
+
+.info .cast span,
+.info .crew span {
+    background-color: var(--main-color);
+    color: white;
+    text-align: center;
+    border-radius: 2.5px;
+    padding: 0 5px;
+    margin-right: 0.5em;
+    width: fit-content;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.info .cast span:hover,
+.info .crew span:hover {
+    background-color: var(--main-color-darker);
+}

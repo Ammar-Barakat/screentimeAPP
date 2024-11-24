@@ -93,7 +93,74 @@
             </div>
         </div>
     </div>
+    <div class="info mt-2">
+        <div class="row">
+            <div class="col-6">
+                <div class="tabs mb-2">
+                    <button class="tablink active" onclick="openTab(event, 'seasons')">SEASONS</button>
+                    <button class="tablink" onclick="openTab(event, 'cast')">CAST</button>
+                    <button class="tablink" onclick="openTab(event, 'crew')">CREW</button>
+                </div>
+                <div id="seasons" class="tabcontent seasons">
+                    @foreach(var season in result.seasons)
+                    {
+                        <div class="season">
+                            <NavLink href="">
+                                <img src="@season.poster_path" alt="@season.name" />
+                            </NavLink>
+                            <div class="title">
+                                <NavLink href="" class="nav-link">
+                                    <h4>@season.name</h4>
+                                </NavLink>
+                                <p>Episodes: @season.episode_count</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="cast" class="tabcontent cast">
+                    @foreach(var member in result.credits.cast)
+                    {
+                        <NavLink href="" class="nav-link">
+                            <span>@member.name</span>
+                        </NavLink>
+                    }
+                </div>
+                <div id="crew" class="tabcontent crew">
+                    @foreach (var member in result.credits.crew)
+                    {
+                        <NavLink href="" class="nav-link">
+                            <span>@member.name</span>
+                        </NavLink>
+                    }
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
 }
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablink;
+
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+
+        tablinks = document.getElementsByClassName("tablink");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+
+        document.getElementById(tabName).style.display = "flex";
+        if (tabName == 'seasons') {
+            document.getElementById(tabName).style.flexDirection = "column";
+        }
+        document.getElementById(tabName).style.flexWrap = "wrap";
+        evt.currentTarget.className += " active";
+    }
+</script>
 
 @code {
     [Parameter]
