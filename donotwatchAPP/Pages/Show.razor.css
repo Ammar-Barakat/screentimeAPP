@@ -54,3 +54,167 @@
     font-size: 0.8rem;
     margin-bottom: 0.1em;
 }
+
+.cover-content .info .sub-info .genres .genre {
+    background-color: var(--main-color);
+    text-align: center;
+    border-radius: 2.5px;
+    padding: 0 5px;
+    width: fit-content;
+    font-size: 0.8rem;
+    transition: 0.2s;
+}
+
+.cover-content .info .sub-info .genres .genre:hover {
+    background-color: var(--main-color-darker);
+}
+
+
+/* ---Control Box--- */
+/* General Styles */
+.control-box {
+    width: 100%;
+    height: 75px;
+    padding: 5px;
+    background-color: #2a2a2a;
+    border-radius: 0 0 20px 20px;
+}
+
+.control-box p {
+    margin-bottom: 0;
+    color: #808080;
+    text-align: center;
+}
+
+.control-box .options {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+/* Rating Stars Styles */
+.control-box .options .rate .stars input {
+    margin: 0;
+    padding: 0;
+    background: none;
+}
+
+.control-box .options .rate .stars .rating {
+    --dir: right;
+    --fill: var(--main-color);
+    --fillbg: #808080;
+    --star: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 17.25l-6.188 3.75 1.641-7.031-5.438-4.734 7.172-0.609 2.813-6.609 2.813 6.609 7.172 0.609-5.438 4.734 1.641 7.031z"/></svg>');
+    --stars: 5;
+    --starsize: 40px;
+    --value: 0;
+    --x: calc(100% * (var(--value) / var(--stars)));
+    block-size: var(--starsize);
+    inline-size: calc(var(--stars) * var(--starsize));
+    position: relative;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+}
+
+[dir="rtl"] .control-box .options .rate .stars .rating {
+    --dir: left;
+}
+
+.control-box .options .rate .stars .rating::-webkit-slider-runnable-track {
+    background: linear-gradient(to var(--dir), var(--fill) 0 var(--x), var(--fillbg) 0 var(--x));
+    block-size: 100%;
+    mask: repeat left center/var(--starsize) var(--star);
+    -webkit-mask: repeat left center/var(--starsize) var(--star);
+}
+
+.control-box .options .rate .stars .rating::-webkit-slider-thumb {
+    height: var(--starsize);
+    opacity: 0;
+    width: calc(var(--starsize) / 2);
+    -webkit-appearance: none;
+}
+
+.control-box .options .rate .stars .rating .rating-label {
+    display: block;
+    font-family: ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Buttons Styles */
+.control-box .options .icon button {
+    background-color: transparent;
+    border: none;
+    color: #808080;
+}
+
+.control-box .options .icon button p,
+.control-box .options .icon button i {
+    transition: 0.2s;
+}
+
+.control-box .options .icon button i {
+    font-size: 1.5rem;
+}
+
+.control-box .options .icon button:hover p, 
+.control-box .options .icon button:hover i {
+    color: white;
+}
+
+
+/* Color Transition Styles */
+
+/*.control-box .another-checked,
+.control-box .checked {
+    color: var(--third-color);
+    transition: 0.5s;
+}
+
+.control-box .checked:hover {
+    color: var(--third-color-hover);
+}
+
+.control-box .liked-checked {
+    color: #ff3939;
+    transition: 0.5s;
+}
+
+.control-box .liked-checked:hover {
+    color: #ff0000;
+}*/
+
+
+
+/* Options Section Styles */
+/*.control-box .options .options .watch,
+.control-box .options .options .save {
+    position: relative;
+}*/
+
+/*.control-box .options .options .watch .log-popup-backdrop,
+.control-box .options .options .save .log-popup-backdrop {
+    opacity: 0;
+    position: unset;
+    background-color: rgba(0, 0, 0, 0.8);
+    transition: all 0.5s ease-in-out;
+    z-index: 998;
+}
+
+.control-box .options .options .watch .log-popup,
+.control-box .options .options .save .log-popup {
+    opacity: 0;
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    transition: all 0.5s ease-in-out;
+}
+
+.control-box .options .options .watch .log-popup .log-popup-inner,
+.control-box .options .options .save .log-popup .log-popup-inner {
+    border-radius: 5px;
+    background-color: var(--footer-background-color);
+    color: var(--main-color-hover);
+}*/
+

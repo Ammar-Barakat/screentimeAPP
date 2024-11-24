@@ -1,4 +1,4 @@
-﻿@page "/show/details/{id:int}-{originalName}"
+﻿@page "/show/details/{id:int}"
 @inject HttpClient _client;
 
 <Header isHome="@false"/>
@@ -36,16 +36,64 @@
                     </div>
                     <div class="genres">
                         <p>Genres:</p>
-                        <p class="genre">@result.genres[0].name</p>
-                        <p class="genre">@result.genres[1].name</p>
+                        <NavLink href="@($"genres/{result.genres[0].name.ToLower().Replace(' ', '-')}")" class="nav-link">
+                            <span class="genre">@result.genres[0].name</span>
+                        </NavLink>
+                        <NavLink href="@($"genres/{result.genres[1].name.ToLower().Replace(' ', '-')}")" class="nav-link">
+                            <span class="genre">@result.genres[1].name</span>
+                        </NavLink>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="control-box">
+        <div class="options">
+            <div class="rate">
+                <p>YOUR RATE</p>
+                <div class="stars">
+                    <label class="rating-label">
+                        <input class="rating" max="5" oninput="this.style.setProperty('--value', this.value)" 
+                        step="0.5" style="--value:0" value="0" type="range" data-val="true" 
+                        data-val-number="The field rate must be a number." 
+                        data-val-range="The field rate must be between 0 and 5." 
+                        data-val-range-max="5" data-val-range-min="0" 
+                        id="loggedMovie_rate" name="loggedMovie.rate">
+                        <input name="__Invariant" type="hidden" value="loggedMovie.rate">
+                    </label>
+                </div>
+            </div>
+            <div class="watch icon">
+                <button id="openbtn">
+                    <i class="bi bi-eye"></i>
+                    <p>WATCH</p>
+                </button>
+            </div>
+            <div class="like icon">
+                <button>
+                    <i class="bi bi-heart"></i>
+                    <p>LIKE</p>
+                </button>
+            </div>
+            <div class="watchlist icon">
+                <form method="post">
+                    <button type="submit">
+                        <i class="bi bi-clock"></i>
+                        <p>WATCHLIST</p>
+                    </button>
+                </form>
+            </div>
+            <div class="save icon">
+                <form method="post">
+                    <button type="submit">
+                        <i class="bi bi-plus-circle"></i>
+                        <p>SAVE</p>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
 }
-
-<h3>@Id</h3>
 
 @code {
     [Parameter]
@@ -69,3 +117,69 @@
         }
     }
 }
+
+@* <div id="model-backdrop" class="log-popup-backdrop"></div>
+                    <div id="model" class="log-popup">
+                        <div class="log-popup-inner">
+                            <div class="row">
+                                <div class="col-3">
+                                    <img src="https://image.tmdb.org/t/p/w200//aDcIt4NHURLKnAEu7gow51Yd00Q.jpg" alt="Another Round" width="175px" height="250px" class="m-3" style="border-radius: 5px">
+                                </div>
+                                <div class="col-8 mt-3 body">
+                                    <div>
+                                        <h6 style="font-size: 12px; margin-bottom: 4px;">I WATCHED...</h6>
+                                        <h3 style="font-weight: 600;">Another Round <span style="font-weight: 300; font-size: smaller;">2020</span></h3>
+                                    </div>
+                                    <form method="post" action="/User/Film/SubmitLog">
+                                        <input value="277c11eb-5a9e-4c1a-8e9c-0e7f0e038d6d" type="hidden" data-val="true" data-val-required="The userId field is required." id="userId" name="userId">
+                                        <input value="580175" type="hidden" data-val="true" data-val-required="The id field is required." id="movie_id" name="movie.id">
+                                        <input value="580175" type="hidden" data-val="true" data-val-required="The Id field is required." id="loggedMovie_Id" name="loggedMovie.Id">
+                                        <input value="Another Round" type="hidden" data-val="true" data-val-required="The title field is required." id="loggedMovie_title" name="loggedMovie.title">
+                                        <input value="/aDcIt4NHURLKnAEu7gow51Yd00Q.jpg" type="hidden" data-val="true" data-val-required="The poster field is required." id="loggedMovie_poster" name="loggedMovie.poster">
+                                        <input value="2020-09-24" type="hidden" data-val="true" data-val-required="The release_date field is required." id="loggedMovie_release_date" name="loggedMovie.release_date">
+                                        <input value="0" type="hidden" data-val="true" data-val-required="The LogTableId field is required." id="loggedMovie_LogTableId" name="loggedMovie.LogTableId">
+                                        <div class="d-flex justify-content-between">
+                                            <div class="">
+                                                <label style="font-size: 15px;" for="loggedMovie_date">Watched on</label>
+                                                <input type="date" value="2024-11-24" data-val="true" data-val-required="The date field is required." id="loggedMovie_date" name="loggedMovie.date"><input name="__Invariant" type="hidden" value="loggedMovie.date">
+                                            </div>
+                                            <div class="d-flex align-items-center">
+                                                <input id="checkbox" style="width: 25px;" type="checkbox" data-val="true" data-val-required="The rewatched field is required." name="loggedMovie.rewatched" value="true">
+                                                <label style="font-size: 15px;" for="loggedMovie_rewatched">
+                                                    I’ve watched this film before
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="review-rating">
+                                            <textarea placeholder="Add a review..." data-val="true" data-val-maxlength="The field review must be a string or array type with a maximum length of '5000'." data-val-maxlength-max="5000" id="loggedMovie_review" maxlength="5000" name="loggedMovie.review"></textarea>
+                                            <div class="rating d-flex justify-content-between align-items-center">
+                                                <div class="rate-like d-flex">
+                                                    <div class="me-5">
+                                                        <p class="m-0">Rating</p>
+                                                        <div class="stars">
+                                                            <label class="rating-label">
+                                                                <input class="rating" max="5" oninput="this.style.setProperty('--value', this.value)" step="0.5" style="--value:0" value="0" type="range" data-val="true" data-val-number="The field rate must be a number." data-val-range="The field rate must be between 0 and 5." data-val-range-max="5" data-val-range-min="0" id="loggedMovie_rate" name="loggedMovie.rate"><input name="__Invariant" type="hidden" value="loggedMovie.rate">
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="like">
+                                                        <p style="margin: 0 0 12.5px;">Like</p>
+                                                        <input id="heart" type="checkbox" data-val="true" data-val-required="The liked field is required." name="loggedMovie.liked" value="true">
+                                                    </div>
+                                                </div>
+                                                <div class="save-btn">
+                                                    <button type="submit" class="btn">SAVE</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input name="__RequestVerificationToken" type="hidden" value="CfDJ8JaFGuSNndxFnNtzDawPXhBItRuQpDImyBaoyYzETKKyz2RVH_Z_x4HMWoGRe2q9nLbeCiFMnnayxbksiVXSfBfUOWMxnNAi8IpeKrRkWuRhaRI8zLIkdwRy1Ml4Fhbbsw1vtMuBEFfNjV3Gg2usXG-AFrEXMCu5qj4-_x5gFSRfFET9paJ6zbJpLyNc4ZB8sw"><input name="loggedMovie.rewatched" type="hidden" value="false"><input name="loggedMovie.liked" type="hidden" value="false">
+                                    </form>
+                                </div>
+                                <div class="col-1">
+                                    <button id="closebtn">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> *@

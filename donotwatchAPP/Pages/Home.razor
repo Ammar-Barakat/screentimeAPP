@@ -12,7 +12,7 @@
         <div class="trending-shows d-flex justify-content-between">
             @foreach (var show in result.results.Take(6))
             {
-                <NavLink href="@($"show/details/{show.id}-{show.original_name.ToLower().Replace(" ", "-")}")">
+                <NavLink href="@($"show/details/{show.id}")">
                     <div class="poster">
                         <div class="overlay">
                             @show.original_name
